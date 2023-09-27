@@ -34,7 +34,7 @@ object ApiModule {
 
     private fun retrofit(): Retrofit =
         Retrofit.Builder()
-            .baseUrl("")
+            .baseUrl("https://itunes.apple.com/")
             .addConverterFactory(converterFactory())
             .client(okHttpClient())
             .build()

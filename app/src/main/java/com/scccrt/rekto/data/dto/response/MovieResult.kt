@@ -11,18 +11,17 @@ data class MovieResult(
 
 @Serializable
 data class MovieResponse(
-    val trackId: String,
+    val trackId: Long,
     val artistName: String,
     val trackName: String,
-    val previewUrl: String,
     @SerialName("artworkUrl60") val artworkMiniUrl: String,
     @SerialName("artworkUrl100") val artworkLargeUrl: String,
     @SerialName("primaryGenreName") val primaryGenre: String,
-    val collectionPrice: String,
-    val trackPrice: String,
-    val collectionHdPrice: String,
-    val trackHdPrice: String,
+    val collectionPrice: Double? = null,
+    val trackPrice: Double? = null,
+    val collectionHdPrice: Double? = null,
+    val trackHdPrice: Double? = null,
     val currency: String,
-    val shortDescription: String,
-    val longDescription: String
+    val shortDescription: String? = null,
+    val longDescription: String? = null
 )

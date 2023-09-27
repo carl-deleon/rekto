@@ -19,6 +19,7 @@
         <activity
             android:name=".ui.feature.main.MainActivity"
             android:exported="true"
+            android:theme="@style/Theme.Rekto.NoActionBar"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

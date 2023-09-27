@@ -10,7 +10,8 @@ interface RektoApi {
     suspend fun searchMovies(
         @Query("term") searchTerm: String,
         @Query("country") country: String = DEFAULT_COUNTRY_CODE,
-        @Query("media") media: String = DEFAULT_MEDIA
+        @Query("media") media: String = DEFAULT_MEDIA,
+        @Query("limit") limit: String
     ): MovieResult
 
     companion object {
