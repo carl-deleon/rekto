@@ -10,12 +10,10 @@ import java.util.Locale
 
 data class Movie(
     val trackId: String,
-    val artistName: String,
     val trackName: String,
     val description: Description,
     val artwork: Artwork,
     val price: Price,
-    val priceHd: Price,
     val primaryGenre: String,
     val previewUrl: String?,
     val releaseDate: String
@@ -53,7 +51,6 @@ data class Description(
 fun MovieResponse.toMovie(): Movie {
     return Movie(
         trackId = trackId.toString(),
-        artistName = artistName,
         trackName = trackName,
         description = Description(shortDescription, longDescription),
         artwork = Artwork(
@@ -65,11 +62,6 @@ fun MovieResponse.toMovie(): Movie {
             trackPrice = trackPrice ?: 0.0,
             currencyCode = currency
         ),
-        priceHd = Price(
-            collectionPrice = collectionHdPrice ?: 0.0,
-            trackPrice = trackHdPrice ?: 0.0,
-            currencyCode = currency
-        ),
         primaryGenre = primaryGenre,
         previewUrl = previewUrl,
         releaseDate = releaseDate
@@ -78,7 +70,6 @@ fun MovieResponse.toMovie(): Movie {
 
 fun Movie.toEntity() = MovieEntity(
     trackId = trackId,
-    artistName = artistName,
     trackName = trackName,
     shortDescription = description.short,
     longDescription = description.long,
@@ -87,8 +78,6 @@ fun Movie.toEntity() = MovieEntity(
     currency = price.currencyCode,
     collectionPrice = price.collectionPrice.toString(),
     trackPrice = price.trackPrice.toString(),
-    collectionHdPrice = priceHd.collectionPrice.toString(),
-    trackHdPrice = priceHd.collectionPrice.toString(),
     genre = primaryGenre,
     previewUrl = previewUrl,
     releaseDate = releaseDate
@@ -96,12 +85,10 @@ fun Movie.toEntity() = MovieEntity(
 
 fun MovieEntity.toMovie() = Movie(
     trackId = trackId,
-    artistName = artistName,
     trackName = trackName,
     description = Description(shortDescription, longDescription),
     artwork = Artwork(artworkMini, artworkLarge),
     price = Price(collectionPrice.toDouble(), trackPrice.toDouble(), currency),
-    priceHd = Price(collectionHdPrice.toDouble(), trackHdPrice.toDouble(), currency),
     primaryGenre = genre,
     previewUrl = previewUrl,
     releaseDate = releaseDate
@@ -109,12 +96,10 @@ fun MovieEntity.toMovie() = Movie(
 
 fun moviePreview() = Movie(
     trackId = "1",
-    artistName = "Sample Artist Name",
     trackName = "Sample Track Name",
     description = Description(short = "Short Description", long = "Long Description"),
     artwork = Artwork(miniArtworkUrl = null, largeArtworkUrl = null),
     price = Price(100.00, 100.00, "AUD"),
-    priceHd = Price(100.00, 100.00, "AUD"),
     primaryGenre = "Genre",
     previewUrl = "",
     releaseDate = "2023-06-01T07:00:00Z"

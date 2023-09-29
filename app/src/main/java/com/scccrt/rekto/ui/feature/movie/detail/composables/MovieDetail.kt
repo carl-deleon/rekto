@@ -82,13 +82,6 @@ fun MovieDetail(movie: Movie) {
                     text = movie.primaryGenre,
                     style = MaterialTheme.typography.bodySmall
                 )
-
-                Spacer(modifier = Modifier.size(mediumPadding))
-
-                Text(
-                    text = stringResource(id = R.string.starring, movie.artistName),
-                    style = MaterialTheme.typography.bodySmall
-                )
             }
 
             Box(

@@ -6,7 +6,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "movies")
 data class MovieEntity(
     @PrimaryKey val trackId: String,
-    val artistName: String,
     val trackName: String,
     val shortDescription: String?,
     val longDescription: String?,
@@ -15,8 +14,6 @@ data class MovieEntity(
     val currency: String,
     val collectionPrice: String,
     val trackPrice: String,
-    val collectionHdPrice: String,
-    val trackHdPrice: String,
     val genre: String,
     val previewUrl: String?,
     val releaseDate: String
