@@ -18,7 +18,7 @@ fun SearchTopAppBar() {
                 color = MaterialTheme.colorScheme.onPrimary
             )
         },
-        colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.secondary)
+        colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.primary)
     )
 }
 
