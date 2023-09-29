@@ -26,8 +26,6 @@ class MovieRepositoryImpl(
         }
 
         if (result.isSuccess) {
-            searchHistoryDao.insert(SearchQuery(query = term))
-
             val moviesResult = result.getOrDefault(emptyList())
 
             if (moviesResult.isNotEmpty()) {
@@ -43,6 +41,10 @@ class MovieRepositoryImpl(
         return withContext(dispatcher) {
             movieDao.getMovie(trackId).toMovie()
         }
+    }
+
+    override suspend fun saveSearchQuery(term: String) {
+        searchHistoryDao.insert(SearchQuery(query = term))
     }
 
     private suspend fun <T> safeApiCall(call: suspend () -> T): Result<T> = runCatching {

@@ -7,4 +7,6 @@ interface MovieRepository {
     suspend fun search(term: String, count: Int = 15): Result<List<Movie>>
 
     suspend fun getMovie(trackId: String): Movie
+
+    suspend fun saveSearchQuery(term: String)
 }

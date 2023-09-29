@@ -11,6 +11,7 @@ class MovieSearchContract {
         data object Refresh : Event()
         data class MovieSelection(val movie: Movie) : Event()
         data class Search(val term: String) : Event()
+        data class SaveQuery(val term: String) : Event()
     }
 
     data class State(
