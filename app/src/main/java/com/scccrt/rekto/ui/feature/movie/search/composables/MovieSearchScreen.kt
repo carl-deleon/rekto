@@ -41,7 +41,7 @@ fun MovieSearchScreen(
     onEventSent: (event: MovieSearchContract.Event) -> Unit,
     onNavigationRequested: (navigationEffect: MovieSearchContract.Effect.Navigation) -> Unit
 ) {
-    var searchQuery by remember { mutableStateOf("") }
+    var searchQuery by remember { mutableStateOf(state.lastSearchQuery) }
     var activeState by remember { mutableStateOf(false) }
     val snackbarHostState = remember { SnackbarHostState() }
 

@@ -8,4 +8,5 @@
     <string name="no_search_result">No results for %1$s</string>
     <string name="buy_for">Buy for %1$s</string>
     <string name="starring">Starring: %1$s</string>
+    <string name="genre_price">%1$s • %2$s</string>
 </resources>
