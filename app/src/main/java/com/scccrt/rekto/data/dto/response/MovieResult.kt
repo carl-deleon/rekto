@@ -23,5 +23,7 @@ data class MovieResponse(
     val trackHdPrice: Double? = null,
     val currency: String,
     val shortDescription: String? = null,
-    val longDescription: String? = null
+    val longDescription: String? = null,
+    val previewUrl: String? = null,
+    val releaseDate: String
 )

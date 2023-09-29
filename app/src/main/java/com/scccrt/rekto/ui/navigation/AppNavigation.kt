@@ -29,10 +29,8 @@ fun AppNavigation() {
             arguments = listOf(navArgument(name = TRACK_ID) {
                 type = NavType.StringType
             })
-        ) { backStackEntry ->
-            val trackId =
-                requireNotNull(backStackEntry.arguments?.getString(TRACK_ID)) { "[TRACK_ID] is required as an argument" }
-
+        ) {
+            MovieDetailDestination(navController)
         }
     }
 }
@@ -45,7 +43,7 @@ object Navigation {
 
     object Routes {
         const val SEARCH = "search"
-        const val MOVIE_DETAIL = "$SEARCH/${TRACK_ID}"
+        const val MOVIE_DETAIL = "$SEARCH/{$TRACK_ID}"
     }
 }
 

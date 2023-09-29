@@ -88,6 +88,8 @@ dependencies {
     implementation("androidx.room:room-ktx:2.6.0-rc01")
     kapt("androidx.room:room-compiler:2.6.0-rc01")
 
+    implementation("com.google.android.exoplayer:exoplayer:2.19.1")
+
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

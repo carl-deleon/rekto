@@ -48,9 +48,7 @@ fun MovieSearchScreen(
     LaunchedEffect(SIDE_EFFECTS_KEY) {
         effectFlow?.onEach { effect ->
             when (effect) {
-                is MovieSearchContract.Effect.Navigation.ToDetail -> {
-                    // onNavigationRequested(effect)
-                }
+                is MovieSearchContract.Effect.Navigation.ToDetail -> onNavigationRequested(effect)
             }
         }?.collect()
     }

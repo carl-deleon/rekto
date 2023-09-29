@@ -10,6 +10,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -62,17 +66,8 @@ fun SearchHistoryItem(
 
         Spacer(modifier = Modifier.size(paddingMedium))
 
-        Box(
-            modifier = Modifier
-                .size(24.dp)
-                .clickable { onDeleteClick(searchQuery) }
-        ) {
-            Image(
-                modifier = Modifier.fillMaxSize(),
-                painter = painterResource(id = R.drawable.baseline_close_24),
-                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onPrimary),
-                contentDescription = ""
-            )
+        IconButton(onClick = { onDeleteClick(searchQuery) }) {
+            Icon(imageVector = Icons.Filled.Clear, contentDescription = null)
         }
     }
 }

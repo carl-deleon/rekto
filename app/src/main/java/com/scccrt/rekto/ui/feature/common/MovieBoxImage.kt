@@ -20,6 +20,7 @@ fun MovieBoxImage(
     @DrawableRes placeholder: Int = R.drawable.movie_placeholder,
     modifier: Modifier,
     crossfade: Boolean = true,
+    contentScale: ContentScale = ContentScale.Fit,
     contentDescription: String = ""
 ) {
     AsyncImage(
@@ -30,7 +31,7 @@ fun MovieBoxImage(
             .build(),
         placeholder = painterResource(id = placeholder),
         contentDescription = contentDescription,
-        contentScale = ContentScale.Fit,
+        contentScale = contentScale,
         modifier = modifier
     )
 }

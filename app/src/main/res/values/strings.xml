@@ -6,4 +6,6 @@
     <string name="network_error_retry_button_text">Try again</string>
     <string name="search_suggestion">Need help with search? Try our recommendation</string>
     <string name="no_search_result">No results for %1$s</string>
+    <string name="buy_for">Buy for %1$s</string>
+    <string name="starring">Starring: %1$s</string>
 </resources>

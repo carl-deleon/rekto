@@ -22,4 +22,8 @@ object DatabaseModule {
     @Singleton
     @Provides
     fun provideSearchHistoryDao(database: RektoDatabase) = database.searchHistoryDao()
+
+    @Singleton
+    @Provides
+    fun provideMovieDao(database: RektoDatabase) = database.movieDao()
 }
