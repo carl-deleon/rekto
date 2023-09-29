@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Rekto</string>
 
+    <string name="search_placeholder">Search for movies</string>
     <string name="network_error_description">A network error occurred. Check your connection or try again</string>
     <string name="network_error_retry_button_text">Try again</string>
     <string name="search_suggestion">Need help with search? Try our recommendation</string>
