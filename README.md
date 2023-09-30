@@ -1,5 +1,6 @@
 # 09272023-carl-justine-de-leon-android
 
+[![Build Status](https://app.bitrise.io/app/de989fcb-88bb-4789-ac7c-0f0e6500a815/status.svg?token=6SW9_TTNeDr6xgop0q_asQ&branch=master)](https://app.bitrise.io/app/de989fcb-88bb-4789-ac7c-0f0e6500a815)
 
 
 ## Getting started

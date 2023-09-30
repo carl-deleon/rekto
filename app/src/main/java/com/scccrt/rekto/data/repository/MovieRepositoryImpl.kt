@@ -22,9 +22,9 @@ class MovieRepositoryImpl(
     private val dispatcher: CoroutineDispatcher
 ) : MovieRepository {
 
-    override suspend fun search(term: String, count: Int): Result<List<Movie>> {
+    override suspend fun search(term: String): Result<List<Movie>> {
         val result = safeApiCall {
-            api.searchMovies(term, limit = count.toString())
+            api.searchMovies(term)
                 .results
                 .map(MovieResponse::toMovie)
         }

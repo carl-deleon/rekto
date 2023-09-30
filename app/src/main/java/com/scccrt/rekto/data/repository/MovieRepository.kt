@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {
 
-    suspend fun search(term: String, count: Int = 15): Result<List<Movie>>
+    suspend fun search(term: String): Result<List<Movie>>
 
     suspend fun getMovie(trackId: String): Movie
 
