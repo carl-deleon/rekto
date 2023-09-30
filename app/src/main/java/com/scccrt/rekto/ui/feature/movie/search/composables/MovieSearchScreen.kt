@@ -87,7 +87,10 @@ fun MovieSearchScreen(
                     },
                     onSearch = {
                         activeState = false
-                        onEventSent(MovieSearchContract.Event.SaveQuery(it))
+
+                        if (it.length > 1) {
+                            onEventSent(MovieSearchContract.Event.SaveQuery(it))
+                        }
                     },
                     active = activeState,
                     onActiveChange = { activeState = it },
