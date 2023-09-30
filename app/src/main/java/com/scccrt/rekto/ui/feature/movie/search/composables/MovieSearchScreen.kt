@@ -48,7 +48,7 @@ fun MovieSearchScreen(
     LaunchedEffect(SIDE_EFFECTS_KEY) {
         effectFlow?.onEach { effect ->
             when (effect) {
-                is MovieSearchContract.Effect.Navigation.ToDetail -> onNavigationRequested(effect)
+                is MovieSearchContract.Effect.Navigation -> onNavigationRequested(effect)
             }
         }?.collect()
     }
@@ -56,7 +56,13 @@ fun MovieSearchScreen(
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         snackbarHost = { SnackbarHost(snackbarHostState) },
-        topBar = { SearchTopAppBar() }
+        topBar = {
+            SearchTopAppBar(
+                onFavoriteClicked = {
+                    onEventSent(MovieSearchContract.Event.NavigateToFavorite)
+                }
+            )
+        }
     ) { innerPadding ->
 
         val noPadding = 0.dp
@@ -121,10 +127,12 @@ fun MovieSearchScreen(
 
                     else -> SearchResultList(
                         movies = state.movies,
-                        modifier = Modifier.fillMaxSize()
-                    ) {
-                        onEventSent(MovieSearchContract.Event.MovieSelection(it))
-                    }
+                        modifier = Modifier.fillMaxSize(),
+                        onItemClick = { onEventSent(MovieSearchContract.Event.MovieSelection(it)) },
+                        onFavoriteMovie = { movie, checked ->
+                            onEventSent(MovieSearchContract.Event.OnFavoriteMovie(movie, checked))
+                        }
+                    )
                 }
             }
         }
@@ -146,5 +154,6 @@ fun previewState() = MovieSearchContract.State(
     movies = List(3) { moviePreview() },
     isLoading = false,
     isError = false,
-    lastSearchQuery = ""
+    lastSearchQuery = "",
+    favoriteMovies = emptyList()
 )

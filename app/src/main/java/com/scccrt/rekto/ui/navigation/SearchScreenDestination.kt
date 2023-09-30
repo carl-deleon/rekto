@@ -17,8 +17,9 @@ fun SearchScreenDestination(
         effectFlow = viewModel.effect,
         onEventSent = { event -> viewModel.setEvent(event) },
         onNavigationRequested = { navigationEffect ->
-            if (navigationEffect is MovieSearchContract.Effect.Navigation.ToDetail) {
-                navController.navigateToDetail(navigationEffect.movie.trackId)
+            when (navigationEffect) {
+                is MovieSearchContract.Effect.Navigation.ToDetail -> navController.navigateToDetail(navigationEffect.movie.trackId)
+                MovieSearchContract.Effect.Navigation.ToFavorite -> navController.navigateToFavorites()
             }
         }
     )

@@ -26,4 +26,8 @@ object DatabaseModule {
     @Singleton
     @Provides
     fun provideMovieDao(database: RektoDatabase) = database.movieDao()
+
+    @Singleton
+    @Provides
+    fun provideFavoritesDao(database: RektoDatabase) = database.favoritesDao()
 }

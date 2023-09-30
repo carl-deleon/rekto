@@ -13,12 +13,17 @@ import com.scccrt.rekto.data.model.moviePreview
 fun SearchResultList(
     movies: List<Movie>,
     modifier: Modifier = Modifier,
-    onItemClick: (Movie) -> Unit
+    onItemClick: (Movie) -> Unit,
+    onFavoriteMovie: (Movie, Boolean) -> Unit
 ) {
     Column(modifier = modifier) {
         LazyColumn {
             items(movies) { movie ->
-                MovieResultItem(movie = movie, onItemClick = onItemClick)
+                MovieResultItem(
+                    movie = movie,
+                    onItemClick = onItemClick,
+                    onFavoriteMovie = onFavoriteMovie
+                )
             }
         }
     }
@@ -28,5 +33,5 @@ fun SearchResultList(
 @Composable
 fun SearchResultPreview() {
     val movies = List(3) { moviePreview() }
-    SearchResultList(movies = movies, onItemClick = {})
+    SearchResultList(movies = movies, onItemClick = {}, onFavoriteMovie = { _, _ -> })
 }

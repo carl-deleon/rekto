@@ -29,10 +29,14 @@ import androidx.compose.ui.unit.dp
 import com.scccrt.rekto.R
 import com.scccrt.rekto.data.model.Movie
 import com.scccrt.rekto.data.model.moviePreview
+import com.scccrt.rekto.ui.feature.common.FavoriteButton
 import com.scccrt.rekto.ui.feature.common.MovieBoxImage
 
 @Composable
-fun MovieDetail(movie: Movie) {
+fun MovieDetail(
+    movie: Movie,
+    onFavoriteClicked: (Movie) -> Unit
+) {
 
     val mediumPadding = dimensionResource(id = R.dimen.padding_medium)
     val largePadding = dimensionResource(id = R.dimen.padding_large)
@@ -60,10 +64,18 @@ fun MovieDetail(movie: Movie) {
 
                 Spacer(modifier = Modifier.size(largePadding))
 
-                FilledTonalButton(onClick = {
-                    // noop
-                }) {
-                    Text(text = stringResource(id = R.string.buy_for, movie.price.displayPrice))
+                Row {
+                    FilledTonalButton(onClick = {
+                        // noop
+                    }) {
+                        Text(text = stringResource(id = R.string.buy_for, movie.price.displayPrice))
+                    }
+
+                    Spacer(modifier = Modifier.size(8.dp))
+
+                    FavoriteButton(isChecked = false) { checked ->
+                        if (checked) onFavoriteClicked(movie)
+                    }
                 }
             }
 
@@ -119,5 +131,5 @@ fun String.fakeEnlargedImageUrl() = "${split("/").dropLast(1).joinToString(separ
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
 @Composable
 fun MovieDetailPreview() {
-    MovieDetail(movie = moviePreview())
+    MovieDetail(movie = moviePreview(), onFavoriteClicked = {})
 }

@@ -4,12 +4,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarHost
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.scccrt.rekto.ui.base.SIDE_EFFECTS_KEY
@@ -34,11 +31,8 @@ fun MovieDetailScreen(
         }?.collect()
     }
 
-    val snackbarHostState = remember { SnackbarHostState() }
-
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
             MovieDetailTopAppBar(title = state.movie?.trackName ?: "") {
                 onEventSent(MovieDetailContract.Event.OnNavigateBack)
@@ -53,7 +47,12 @@ fun MovieDetailScreen(
             color = MaterialTheme.colorScheme.background
         ) {
             if (state.movie != null) {
-                MovieDetail(movie = state.movie)
+                MovieDetail(
+                    movie = state.movie,
+                    onFavoriteClicked = {
+                        onEventSent(MovieDetailContract.Event.AddFavorite(it))
+                    }
+                )
             }
         }
     }

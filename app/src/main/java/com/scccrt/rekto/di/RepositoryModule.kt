@@ -1,5 +1,6 @@
 package com.scccrt.rekto.di
 
+import com.scccrt.rekto.data.local.dao.FavoriteMovieDao
 import com.scccrt.rekto.data.local.dao.MovieDao
 import com.scccrt.rekto.data.local.dao.SearchHistoryDao
 import com.scccrt.rekto.data.remote.RektoApi
@@ -24,8 +25,9 @@ object RepositoryModule {
         api: RektoApi,
         searchHistoryDao: SearchHistoryDao,
         movieDao: MovieDao,
+        favoriteMovieDao: FavoriteMovieDao,
         dispatcher: CoroutineDispatcher
-    ): MovieRepository = MovieRepositoryImpl(api, searchHistoryDao, movieDao, dispatcher)
+    ): MovieRepository = MovieRepositoryImpl(api, searchHistoryDao, movieDao, favoriteMovieDao, dispatcher)
 
     @Provides
     @ViewModelScoped

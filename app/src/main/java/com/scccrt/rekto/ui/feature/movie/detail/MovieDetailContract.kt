@@ -10,15 +10,14 @@ class MovieDetailContract {
     sealed class Event : UiEvent {
         data object OnNavigateBack : Event()
 
-        // TODO
-        //data object ToggleFavorite : Event()
+        data class AddFavorite(val movie: Movie) : Event()
     }
 
     data class State(val movie: Movie?) : UiState
 
     sealed class Effect : UiSideEffect {
         sealed class Navigation : Effect() {
-            object Back : Navigation()
+            data object Back : Navigation()
         }
     }
 }

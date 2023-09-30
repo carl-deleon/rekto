@@ -32,6 +32,12 @@ fun AppNavigation() {
         ) {
             MovieDetailDestination(navController)
         }
+
+        composable(
+            route = Navigation.Routes.FAVORITE
+        ) {
+            FavoriteMovieScreenDestination(navController)
+        }
     }
 }
 
@@ -44,9 +50,14 @@ object Navigation {
     object Routes {
         const val SEARCH = "search"
         const val MOVIE_DETAIL = "$SEARCH/{$TRACK_ID}"
+        const val FAVORITE = "favorite"
     }
 }
 
 fun NavController.navigateToDetail(trackId: String) {
     navigate(route = "${Navigation.Routes.SEARCH}/$trackId")
+}
+
+fun NavController.navigateToFavorites() {
+    navigate(route = Navigation.Routes.FAVORITE)
 }

@@ -18,7 +18,7 @@ fun MovieDetailDestination(
         onEventSent = { event -> viewModel.setEvent(event) },
         onNavigationRequested = { navigationEffect ->
             if (navigationEffect is MovieDetailContract.Effect.Navigation.Back) {
-                navController.popBackStack(route = Navigation.Routes.SEARCH, inclusive = false)
+                navController.popBackStack()
             }
         }
     )

@@ -1,6 +1,7 @@
 package com.scccrt.rekto.data.model
 
 import com.scccrt.rekto.data.dto.response.MovieResponse
+import com.scccrt.rekto.data.local.entities.FavoriteMovie
 import com.scccrt.rekto.data.local.entities.MovieEntity
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -16,7 +17,8 @@ data class Movie(
     val price: Price,
     val primaryGenre: String,
     val previewUrl: String?,
-    val releaseDate: String
+    val releaseDate: String,
+    val isFavorite: Boolean = false
 ) {
 
     val displayTitle: String
@@ -92,6 +94,22 @@ fun MovieEntity.toMovie() = Movie(
     primaryGenre = genre,
     previewUrl = previewUrl,
     releaseDate = releaseDate
+)
+
+fun Movie.toFavoriteMovie() = FavoriteMovie(
+    trackId = trackId,
+    trackName = trackName,
+    shortDescription = description.short,
+    longDescription = description.long,
+    artworkMini = artwork.miniArtworkUrl,
+    artworkLarge = artwork.largeArtworkUrl,
+    currency = price.currencyCode,
+    collectionPrice = price.collectionPrice.toString(),
+    trackPrice = price.trackPrice.toString(),
+    genre = primaryGenre,
+    previewUrl = previewUrl,
+    releaseDate = releaseDate,
+    dateAdded = System.currentTimeMillis().toString()
 )
 
 fun moviePreview() = Movie(
