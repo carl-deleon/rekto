@@ -4,10 +4,15 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -49,7 +54,11 @@ fun FavoriteMovieItem(
                     .size(thumbnailSize)
                     .padding(end = paddingMedium)
             )
-            Column {
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .weight(2f)
+            ) {
                 Text(
                     text = favoriteMovie.trackName,
                     style = MaterialTheme.typography.titleMedium,
@@ -66,6 +75,9 @@ fun FavoriteMovieItem(
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.fillMaxWidth()
                 )
+            }
+            IconButton(modifier = Modifier.weight(1f), onClick = { onRemoveFavorite(favoriteMovie) }) {
+                Icon(imageVector = Icons.Filled.Delete, contentDescription = null)
             }
         }
         HorizontalDivider(

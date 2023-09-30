@@ -49,8 +49,8 @@ fun MovieDetailScreen(
             if (state.movie != null) {
                 MovieDetail(
                     movie = state.movie,
-                    onFavoriteClicked = {
-                        onEventSent(MovieDetailContract.Event.AddFavorite(it))
+                    onFavoriteClicked = { movie, checked ->
+                        onEventSent(MovieDetailContract.Event.ToggleFavorite(movie, checked))
                     }
                 )
             }

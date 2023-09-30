@@ -41,7 +41,7 @@ class FavoriteMovieViewModel @Inject constructor(
 
     private fun removeFromFavorites(movie: FavoriteMovie) {
         viewModelScope.launch {
-            movieRepository.removeFavorite(movie)
+            movieRepository.toggleFavorite(movie, false)
         }
     }
 }

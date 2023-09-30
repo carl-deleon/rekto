@@ -67,13 +67,7 @@ class MovieSearchViewModel @Inject constructor(
 
     private fun toggleMovieFavorite(movie: Movie, checked: Boolean) {
         viewModelScope.launch {
-            val favoriteMovie = movie.toFavoriteMovie()
-
-            if (checked) {
-                movieRepository.addFavorite(favoriteMovie)
-            } else {
-                movieRepository.removeFavorite(favoriteMovie)
-            }
+            movieRepository.toggleFavorite(movie.toFavoriteMovie(), checked)
         }
     }
 

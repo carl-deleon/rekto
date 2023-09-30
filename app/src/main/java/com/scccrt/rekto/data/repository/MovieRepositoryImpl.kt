@@ -55,15 +55,9 @@ class MovieRepositoryImpl(
         return favoriteMovieDao.getFavoriteMovies()
     }
 
-    override suspend fun addFavorite(movie: FavoriteMovie) {
+    override suspend fun toggleFavorite(movie: FavoriteMovie, checked: Boolean) {
         withContext(dispatcher) {
-            favoriteMovieDao.addToFavorites(movie)
-        }
-    }
-
-    override suspend fun removeFavorite(movie: FavoriteMovie) {
-        withContext(dispatcher) {
-            favoriteMovieDao.removeFromFavorites(movie.trackId)
+            if (checked) favoriteMovieDao.addToFavorites(movie) else favoriteMovieDao.removeFromFavorites(movie.trackId)
         }
     }
 

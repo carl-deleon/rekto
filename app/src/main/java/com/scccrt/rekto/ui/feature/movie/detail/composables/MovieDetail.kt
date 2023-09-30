@@ -35,7 +35,7 @@ import com.scccrt.rekto.ui.feature.common.MovieBoxImage
 @Composable
 fun MovieDetail(
     movie: Movie,
-    onFavoriteClicked: (Movie) -> Unit
+    onFavoriteClicked: (Movie, Boolean) -> Unit
 ) {
 
     val mediumPadding = dimensionResource(id = R.dimen.padding_medium)
@@ -73,8 +73,8 @@ fun MovieDetail(
 
                     Spacer(modifier = Modifier.size(8.dp))
 
-                    FavoriteButton(isChecked = false) { checked ->
-                        if (checked) onFavoriteClicked(movie)
+                    FavoriteButton(isChecked = movie.isFavorite) { checked ->
+                        onFavoriteClicked(movie, checked)
                     }
                 }
             }
@@ -131,5 +131,5 @@ fun String.fakeEnlargedImageUrl() = "${split("/").dropLast(1).joinToString(separ
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
 @Composable
 fun MovieDetailPreview() {
-    MovieDetail(movie = moviePreview(), onFavoriteClicked = {})
+    MovieDetail(movie = moviePreview(), onFavoriteClicked = { _, _ -> })
 }

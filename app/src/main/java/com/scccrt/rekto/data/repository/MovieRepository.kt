@@ -14,7 +14,5 @@ interface MovieRepository {
 
     fun getFavoriteMovies(): Flow<MutableList<FavoriteMovie>>
 
-    suspend fun addFavorite(movie: FavoriteMovie)
-
-    suspend fun removeFavorite(movie: FavoriteMovie)
+    suspend fun toggleFavorite(movie: FavoriteMovie, checked: Boolean)
 }

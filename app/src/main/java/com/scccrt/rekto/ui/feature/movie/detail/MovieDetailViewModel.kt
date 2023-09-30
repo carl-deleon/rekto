@@ -21,10 +21,23 @@ class MovieDetailViewModel @Inject constructor(
         savedStateHandle.get<String>(Navigation.Args.TRACK_ID) ?: "[TRACK_ID] argument is required."
 
     init {
+        viewModelScope.launch {
+            movieRepository
+                .getFavoriteMovies()
+                .collect { favoriteMovies ->
+                    setState {
+                        copy(
+                            favoriteMovies = favoriteMovies,
+                            movie = movie?.copy(isFavorite = favoriteMovies.find { it.trackId == movie.trackId } != null)
+                        )
+                    }
+                }
+        }
+
         getMovie()
     }
 
-    override fun setInitialState() = MovieDetailContract.State(movie = null)
+    override fun setInitialState() = MovieDetailContract.State(movie = null, favoriteMovies = emptyList())
 
     override fun handleEvents(event: MovieDetailContract.Event) {
         when (event) {
@@ -32,20 +45,24 @@ class MovieDetailViewModel @Inject constructor(
                 setEffect { MovieDetailContract.Effect.Navigation.Back }
             }
 
-            is MovieDetailContract.Event.AddFavorite -> addFavoriteMovie(event.movie)
+            is MovieDetailContract.Event.ToggleFavorite -> toggleFavoriteMovie(event.movie, event.checked)
         }
     }
 
     private fun getMovie() {
         viewModelScope.launch {
             val movie = movieRepository.getMovie(trackId)
-            setState { copy(movie = movie) }
+            setState {
+                copy(
+                    movie = movie.copy(isFavorite = favoriteMovies.find { it.trackId == movie.trackId } != null)
+                )
+            }
         }
     }
 
-    private fun addFavoriteMovie(movie: Movie) {
+    private fun toggleFavoriteMovie(movie: Movie, checked: Boolean) {
         viewModelScope.launch {
-            movieRepository.addFavorite(movie.toFavoriteMovie())
+            movieRepository.toggleFavorite(movie.toFavoriteMovie(), checked)
         }
     }
 }
